@@ -1,0 +1,73 @@
+/* Custom styles for My Modern Blog */
+
+/* Base styles */
+body {
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header styles */
+.blog-logo {
+    transition: transform 0.3s ease;
+}
+
+.blog-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Blog post card styles */
+.bg-white {
+    transition: background-color 0.3s ease;
+}
+
+.text-gray-800, .text-gray-600 {
+    transition: color 0.3s ease;
+}
+
+/* Button styles */
+button {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Form input styles */
+input {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+
+/* Accessibility styles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none;
+    }
+    
+    body {
+        font-size: 12pt;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+}

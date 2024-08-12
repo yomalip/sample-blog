@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript ES6 Features You Should Know - My Modern Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="/js/main.js" defer></script>
+</head>
+<body class="bg-gray-100" >
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <svg class="w-10 h-10 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="var(--logo-bg, #3B82F6)" />
+                        <text x="50" y="62" font-family="Arial, sans-serif" font-size="40" fill="var(--logo-text, white)" text-anchor="middle">MB</text>
+                    </svg>
+                    <span class="text-2xl font-bold text-gray-800">My Blog</span>
+                </div>
+                <div class="space-x-4">
+                    <a href="../index.html" class="text-gray-800  hover:text-blue-500">Home</a>
+                    <a href="../about.html" class="text-gray-800 hover:text-blue-500">About</a>
+                    <a href="../contact.html" class="text-gray-800 hover:text-blue-500">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <article class="bg-white  rounded-lg shadow-md overflow-hidden">
+            <img src="../images/js-es6.svg" alt="JavaScript ES6 Illustration" class="w-full h-64 object-cover">
+            <div class="p-6">
+                <h1 class="text-3xl font-bold mb-4 text-gray-900 ">JavaScript ES6 Features You Should Know</h1>
+                <div class="text-gray-600  mb-4">
+                    <span>By Alex Johnson</span>
+                    <span class="mx-2">|</span>
+                    <span>Published on June 1, 2024</span>
+                </div>
+                <div class="prose max-w-none">
+                    <p>ECMAScript 2015, also known as ES6, introduced many features that make JavaScript more powerful and expressive. In this post, we'll explore some of the most important ES6 features that every JavaScript developer should be familiar with.</p>
+                    
+                    <h2>1. Let and Const</h2>
+                    <p><code>let</code> and <code>const</code> provide block-scoped alternatives to <code>var</code>:</p>
+                    <pre><code class="language-javascript">
+let x = 1;
+const y = 2;
+// y = 3; // This would throw an error
+                    </code></pre>
+
+                    <h2>2. Arrow Functions</h2>
+                    <p>Arrow functions provide a more concise syntax for writing function expressions:</p>
+                    <pre><code class="language-javascript">
+// Traditional function
+function add(a, b) {
+    return a + b;
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+                    </code></pre>
+
+                    <h2>3. Template Literals</h2>
+                    <p>Template literals allow for easier string interpolation and multiline strings:</p>
+                    <pre><code class="language-javascript">
+const name = 'World';
+console.log(`Hello, ${name}!`);
+
+const multiline = `
+    This is a
+    multiline string
+`;
+                    </code></pre>
+
+                    <h2>4. Destructuring</h2>
+                    <p>Destructuring allows you to extract values from arrays or properties from objects into distinct variables:</p>
+                    <pre><code class="language-javascript">
+const [a, b] = [1, 2];
+const { x, y } = { x: 3, y: 4 };
+                    </code></pre>
+
+                    <h2>5. Spread and Rest Operators</h2>
+                    <p>The spread operator allows an iterable to be expanded, while the rest operator allows an indefinite number of arguments to be represented as an array:</p>
+                    <pre><code class="language-javascript">
+// Spread
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+// Rest
+function sum(...numbers) {
+    return numbers.reduce((a, b) => a + b, 0);
+}
+                    </code></pre>
+
+                    <h2>6. Classes</h2>
+                    <p>ES6 introduced a cleaner syntax for creating objects and implementing inheritance:</p>
+                    <pre><code class="language-javascript">
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        console.log(`${this.name} makes a sound.`);
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        console.log(`${this.name} barks.`);
+    }
+}
+                    </code></pre>
+
+                    <p>These are just a few of the many features introduced in ES6. Others include Promises for better asynchronous programming, modules for better code organization, and new array methods like <code>find()</code> and <code>findIndex()</code>.</p>
+
+                    <p>Mastering these ES6 features will help you write more modern, efficient, and readable JavaScript code. As you continue to develop your skills, make sure to explore these features in depth and practice using them in your projects.</p>
+                </div>
+            </div>
+        </article>
+        
+        <div x-data="commentSystem()" class="mt-8 bg-white  rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 ">Comments</h2>
+            <div class="mb-4">
+                <textarea 
+                    x-model="newComment" 
+                    class="w-full p-2 border rounded " 
+                    rows="3" 
+                    placeholder="Write a comment..."></textarea>
+                <button 
+                    @click="addComment" 
+                    class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Add Comment
+                </button>
+            </div>
+            <div class="space-y-4">
+                <template x-for="comment in comments" :key="comment.id">
+                    <div class="bg-gray-100  p-4 rounded shadow">
+                        <p x-text="comment.text" class="text-gray-800 "></p>
+                        <p x-text="'By ' + comment.author + ' on ' + comment.date" class="text-sm text-gray-600 mt-2"></p>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
